@@ -1,0 +1,73 @@
+Dumping host connections:
+0
+
+Testing latency between hosts:
+Latency Results for h1:
+Dumping host connections:
+0.0
+
+Testing latency between h1 and h2:
+Latency Results:
+Average Latency: 0.0
+Maximum Latency: 0.0
+Minimum Latency: 0.0
+
+Testing throughput between h1 and h2:
+['41.5 Gbits/sec', '41.6 Gbits/sec']
+
+Testing packet loss between h1 and h2:
+0.0
+Dumping host connections:
+0.0
+
+Second test run results:
+Testing latency between h1 and h2:
+Latency Results:
+Average Latency: 0.0
+Maximum Latency: 0.0
+Minimum Latency: 0.0
+
+Testing throughput between h1 and h2:
+['31.6 Gbits/sec', '31.7 Gbits/sec']
+
+Testing packet loss between h1 and h2:
+0.0
+
+Output for test run 2 from terminal:
+*** Creating network
+*** Adding hosts:
+h1 h2 
+*** Adding switches:
+s1 
+*** Adding links:
+(h1, s1) (h2, s1) 
+*** Configuring hosts
+h1 h2 
+*** Starting controller
+c0 
+*** Starting 1 switches
+s1 ...
+*** Ping: testing ping reachability
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+*** Iperf: testing TCP bandwidth between h1 and h2 
+*** Results: ['31.6 Gbits/sec', '31.7 Gbits/sec']
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+*** Starting CLI:
+mininet> exit
+*** Stopping 1 controllers
+c0 
+*** Stopping 2 links
+..
+*** Stopping 1 switches
+s1 
+*** Stopping 2 hosts
+h1 h2 
+*** Done
+
