@@ -1,0 +1,117 @@
+*** Creating network
+*** Adding hosts:
+h1 h2 h3 h4 
+*** Adding switches:
+s1 
+*** Adding links:
+(10.00Mbit) (10.00Mbit) (h1, s1) (10.00Mbit) (10.00Mbit) (h2, s1) (10.00Mbit) (10.00Mbit) (h3, s1) (10.00Mbit) (10.00Mbit) (h4, s1) 
+*** Configuring hosts
+h1 h2 h3 h4 
+*** Starting controller
+c0 
+*** Starting 1 switches
+s1 ...(10.00Mbit) (10.00Mbit) (10.00Mbit) (10.00Mbit) 
+*** Starting CLI:
+mininet> net.pingAll()
+h1 h1-eth0:s1-eth1
+h2 h2-eth0:s1-eth2
+h3 h3-eth0:s1-eth3
+h4 h4-eth0:s1-eth4
+s1 lo:  s1-eth1:h1-eth0 s1-eth2:h2-eth0 s1-eth3:h3-eth0 s1-eth4:h4-eth0
+c0
+mininet> h1 ping -c 5 h2
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=9.88 ms
+64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=0.314 ms
+64 bytes from 10.0.0.2: icmp_seq=3 ttl=64 time=0.073 ms
+64 bytes from 10.0.0.2: icmp_seq=4 ttl=64 time=0.085 ms
+64 bytes from 10.0.0.2: icmp_seq=5 ttl=64 time=0.109 ms
+
+--- 10.0.0.2 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4399ms
+rtt min/avg/max/mdev = 0.073/2.093/9.884/3.896 ms
+mininet> h2 ping -c 5 h3
+PING 10.0.0.3 (10.0.0.3) 56(84) bytes of data.
+64 bytes from 10.0.0.3: icmp_seq=1 ttl=64 time=6.42 ms
+64 bytes from 10.0.0.3: icmp_seq=2 ttl=64 time=0.082 ms
+64 bytes from 10.0.0.3: icmp_seq=3 ttl=64 time=0.070 ms
+64 bytes from 10.0.0.3: icmp_seq=4 ttl=64 time=0.072 ms
+64 bytes from 10.0.0.3: icmp_seq=5 ttl=64 time=0.122 ms
+
+--- 10.0.0.3 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4081ms
+rtt min/avg/max/mdev = 0.070/1.353/6.423/2.534 ms
+mininet> h1 iperf -s &
+mininet> h2 iperf -c h1
+------------------------------------------------------------
+Client connecting to 10.0.0.1, TCP port 5001
+TCP window size:  170 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.0.2 port 54174 connected with 10.0.0.1 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0-10.1 sec  11.5 MBytes  9.56 Mbits/sec
+mininet> h2 iperf -s &
+mininet> h3 iperf -c h2
+------------------------------------------------------------
+Client connecting to 10.0.0.2, TCP port 5001
+TCP window size:  170 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.0.3 port 48718 connected with 10.0.0.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0-10.2 sec  11.9 MBytes  9.81 Mbits/sec
+mininet> h1 ping -c 10 h2
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 10.0.0.1 port 5001 connected with 10.0.0.2 port 54174
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-10.5 sec  11.5 MBytes  9.20 Mbits/sec
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.634 ms
+64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=0.073 ms
+64 bytes from 10.0.0.2: icmp_seq=3 ttl=64 time=0.088 ms
+64 bytes from 10.0.0.2: icmp_seq=4 ttl=64 time=0.107 ms
+64 bytes from 10.0.0.2: icmp_seq=5 ttl=64 time=0.120 ms
+64 bytes from 10.0.0.2: icmp_seq=6 ttl=64 time=0.076 ms
+64 bytes from 10.0.0.2: icmp_seq=7 ttl=64 time=0.077 ms
+64 bytes from 10.0.0.2: icmp_seq=8 ttl=64 time=0.160 ms
+64 bytes from 10.0.0.2: icmp_seq=9 ttl=64 time=0.074 ms
+64 bytes from 10.0.0.2: icmp_seq=10 ttl=64 time=0.097 ms
+
+--- 10.0.0.2 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9210ms
+rtt min/avg/max/mdev = 0.073/0.150/0.634/0.163 ms
+mininet> h2 ping -c 10 h3
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 10.0.0.2 port 5001 connected with 10.0.0.3 port 48718
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-10.5 sec  11.9 MBytes  9.51 Mbits/sec
+PING 10.0.0.3 (10.0.0.3) 56(84) bytes of data.
+64 bytes from 10.0.0.3: icmp_seq=1 ttl=64 time=1.36 ms
+64 bytes from 10.0.0.3: icmp_seq=2 ttl=64 time=0.062 ms
+64 bytes from 10.0.0.3: icmp_seq=3 ttl=64 time=0.015 ms
+64 bytes from 10.0.0.3: icmp_seq=4 ttl=64 time=0.103 ms
+64 bytes from 10.0.0.3: icmp_seq=5 ttl=64 time=0.109 ms
+64 bytes from 10.0.0.3: icmp_seq=6 ttl=64 time=0.056 ms
+64 bytes from 10.0.0.3: icmp_seq=7 ttl=64 time=0.077 ms
+64 bytes from 10.0.0.3: icmp_seq=8 ttl=64 time=0.000 ms
+64 bytes from 10.0.0.3: icmp_seq=9 ttl=64 time=0.080 ms
+64 bytes from 10.0.0.3: icmp_seq=10 ttl=64 time=0.079 ms
+
+--- 10.0.0.3 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9225ms
+rtt min/avg/max/mdev = 0.000/0.193/1.356/0.388 ms
+mininet> exit
+*** Stopping 1 controllers
+c0 
+*** Stopping 4 links
+....
+*** Stopping 1 switches
+s1 
+*** Stopping 4 hosts
+h1 h2 h3 h4 
+*** Done
