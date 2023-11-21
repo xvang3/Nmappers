@@ -1,0 +1,14 @@
+Dumping host connections:
+0.0
+
+Testing latency between h1 and h2:
+Latency Results:
+Average Latency: 0.0
+Maximum Latency: 0.0
+Minimum Latency: 0.0
+
+Testing throughput between h1 and h2:
+['24.8 Gbits/sec', '27.5 Gbits/sec']
+
+Testing packet loss between h1 and h2:
+0.0

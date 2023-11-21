@@ -1,0 +1,53 @@
+Dumping host connections:
+83.33333333333333
+
+Testing latency between h1 and h2:
+Latency Results:
+Average Latency: 0.0
+Maximum Latency: 0.0
+Minimum Latency: 0.0
+
+Testing throughput between h1 and h2:
+['30.0 Gbits/sec', '30.2 Gbits/sec']
+
+Testing packet loss between h1 and h2:
+0.0
+
+Output from Ubuntu terminal:
+*** Creating network
+*** Adding hosts:
+h1 h2 h3 
+*** Adding switches:
+s1 s2 
+*** Adding links:
+(h1, s1) (h2, s1) (h3, s2) 
+*** Configuring hosts
+h1 h2 h3 
+*** Starting controller
+c0 
+*** Starting 2 switches
+s1 s2 ...
+*** Ping: testing ping reachability
+h1 -> X X 
+h2 -> h1 X 
+h3 -> X X 
+*** Results: 83% dropped (1/6 received)
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+*** Iperf: testing TCP bandwidth between h1 and h2 
+*** Results: ['30.0 Gbits/sec', '30.2 Gbits/sec']
+h1 -> h2 
+h2 -> h1 
+*** Results: 0% dropped (2/2 received)
+*** Starting CLI:
+mininet> exit
+*** Stopping 1 controllers
+c0 
+*** Stopping 3 links
+...
+*** Stopping 2 switches
+s1 s2 
+*** Stopping 3 hosts
+h1 h2 h3 
+*** Done
